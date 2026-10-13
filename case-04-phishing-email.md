@@ -26,7 +26,14 @@ grep -i "^reply-to" email.txt
 - **Authority:** pretends to be Microsoft Security
 
 ## Verdict
-Phishing. (Write your 3 pieces of evidence here.)
+Phishing. The email pretends to be from Microsoft, but:
+1. The sender domain is micros0ft-support.com, with a zero instead
+   of the letter "o". It is not owned by Microsoft.
+2. SPF failed, DKIM was missing and DMARC failed, so the email did
+   not pass any authentication check.
+3. Replies go to a free Gmail address. A real company like Microsoft
+   uses its own email addresses, not Gmail.
+The email was also sent from a server in Russia (mailer-xyz.ru).
 
 ## Response actions
 1. Asked the user whether she clicked or entered her password
@@ -38,4 +45,9 @@ Phishing. (Write your 3 pieces of evidence here.)
 - T1566.002 – Phishing: Spearphishing Link
 
 ## What I learned
-(2–3 sentences in your own words.)
+The display name in an email can say anything, so I always check the
+real address and read the domain from the right. I learned what SPF,
+DKIM and DMARC mean, and that "pass" only proves the email came from
+that domain, not that the domain is safe. This case connects to my
+thesis: the attacker used urgency, fear and authority to make the
+user act quickly without thinking.
